@@ -4,3 +4,7 @@
         </div>
         <button type="button" class="btn btn-warning" (click)="tweet()">tweet</button>
     </form>
+    <div *ngFor="let status of feeds | async">
+        <div>{{status.email}}</div>
+        <div>{{status.tweet}}</div>
+    </div>

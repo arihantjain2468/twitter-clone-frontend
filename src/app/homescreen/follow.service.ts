@@ -3,41 +3,39 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { LoginService } from '../login.service';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { Feeds } from './models/feeds';
-
+import { FollowList } from './models/follow-list';
 
 @Injectable({
   providedIn: 'root'
 })
-export class TweetService {
+export class FollowService {
   private envUrl = environment.baseurl;
-  private tweetUrl = this.envUrl+"/status/add";
-  private feedsUrl = this.envUrl+"/follow/feeds";
+  private tweetUrl = this.envUrl+"/follow/add";
+  private feedsUrl = this.envUrl+"/follow/fetch";
   email:string = "";
-  token:string = "";
+  token:string= "";
 
-  private _feeds: BehaviorSubject<Feeds[]>;
+  private _followList: BehaviorSubject<FollowList[]>;
 
   private dataStore: {
-    feeds: Feeds[];
+    followList: FollowList[];
   }
 
+
   constructor(private httpClient: HttpClient,private loginservice:LoginService) { 
-    this.dataStore = { feeds: [] };
-    this._feeds = new BehaviorSubject<Feeds[]>([]);
-    let email = sessionStorage.getItem("email")
+    this.dataStore = { followList: [] };
+    this._followList = new BehaviorSubject<FollowList[]>([]);
+    let email = sessionStorage.getItem("email");
     if(email!=null){
       this.email = email;
     }
-    let token = sessionStorage.getItem("token")
+    let token = sessionStorage.getItem("token");
     if(token!=null){
       this.token = token;
     }
   }
 
-  
-
-  statusPost(body:object){
+  followUser(body:object){
     this.httpClient.post(this.tweetUrl,body,{ params: {
       email: this.email,
     }}).subscribe((data) => {
@@ -45,25 +43,22 @@ export class TweetService {
     });
   }
 
-  get feeds(): Observable<Feeds[]> {
-    return this._feeds.asObservable();
+  get followList(): Observable<FollowList[]> {
+    return this._followList.asObservable();
   }
 
-  fetchFeeds(){
+  fetchList(){
 
-    return this.httpClient.get<Feeds[]>(this.feedsUrl,{ params: {
+    return this.httpClient.get(this.feedsUrl,{ params: {
       email: this.email,
       }})
       .subscribe(data => {
-        console.log("feeds"+data);
+        console.log(JSON.parse(JSON.stringify(data)).result);
         let list = JSON.parse(JSON.stringify(data)).result;
-
-        this.dataStore.feeds = list;
-        this._feeds.next(Object.assign({}, this.dataStore).feeds);
+        this.dataStore.followList = list as FollowList[];
+        this._followList.next(Object.assign({}, this.dataStore).followList);
       }, error => {
         console.log("Failed to fetch feeds")
       });
   }
-
-
 }

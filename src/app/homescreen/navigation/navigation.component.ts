@@ -18,7 +18,9 @@ export class NavigationComponent {
    }
 
   ngOnInit(): void {
-    this.username = this.loginservice.getName()
+    let username = sessionStorage.getItem("username");
+    if(username!=null)
+    this.username = username;
 
     // this.router.events.subscribe((event: Event) => {
     //   if (event instanceof NavigationEnd) {
@@ -58,7 +60,6 @@ export class NavigationComponent {
     }
   }
   Logout(){
-    this.username=this.loginservice.logout()
-    this.router.navigateByUrl('/home')
+    this.loginservice.logout();    
    }
 }

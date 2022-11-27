@@ -1,1 +1,5 @@
-<p>userslist works!</p>
+<div *ngFor="let user of users | async">
+    <div>{{user.email}}</div>
+    <div>{{user.name}}</div>
+    <button (click)="followUser(user.email)">follow</button>
+</div>

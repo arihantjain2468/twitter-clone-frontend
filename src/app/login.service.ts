@@ -32,6 +32,10 @@ export class LoginService {
         this.username=this.Data.data1.name;
         this.email=this.Data.data1.email;
 
+        sessionStorage.setItem("email",this.Data.data1.email);
+        sessionStorage.setItem("token",this.Data.token);
+        sessionStorage.setItem("username",this.Data.data1.name);
+
         if (this.Data.result == 1) {
           this.router.navigateByUrl('/homescreen');
         }
@@ -47,21 +51,22 @@ export class LoginService {
         this.username=this.Register.data1.name;
         this.email=this.Register.data1.email;
 
+        sessionStorage.setItem("email",this.Data.data1.email);
+        sessionStorage.setItem("token",this.Data.token);
+        sessionStorage.setItem("username",this.Data.data1.name);
+
+
         if(this.Register.result == 1){
-          this.router.navigateByUrl('/homescreen');        }
+          this.router.navigateByUrl('/homescreen');       
+         }
       }
       );
   }
   
   logout(){
-    this.email = "";
-    this.username = "";
-    return this.username;
-  }
-  getName(){
-    return this.username;
-  }
-  getEmail(){
-    return this.email;
+    sessionStorage.removeItem("email");
+    sessionStorage.removeItem("token");
+    sessionStorage.removeItem("username");
+    this.router.navigateByUrl('/login');
   }
 }
