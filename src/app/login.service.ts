@@ -45,7 +45,7 @@ export class LoginService {
         console.log("post is successful",data);
         this.Register = data;
         this.username=this.Register.data1.name;
-        this.email=this.Data.data1.email;
+        this.email=this.Register.data1.email;
 
         if(this.Register.result == 1){
           this.router.navigateByUrl('/homescreen');        }
