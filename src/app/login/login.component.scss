@@ -1,4 +1,23 @@
+.signin-container{
+    min-height: 100vh;
+    background-color: grey;
+}
 .loginin-body{
     background-color: white;
-    border: 1px solid;
+    border: 1px;
+    border-radius: 15px;
+    height: 500px;
+    width:  650px;
+    padding: 40px;
+}
+.login-button{
+    border-radius: 40px;
+    width: 300px;
+    margin: 30px;
+}
+.form-group{
+    height: 80px;
+}
+.error-field{
+    color: red;
 }

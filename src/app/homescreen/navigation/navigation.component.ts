@@ -22,40 +22,13 @@ export class NavigationComponent {
     if(username!=null)
     this.username = username;
 
-    // this.router.events.subscribe((event: Event) => {
-    //   if (event instanceof NavigationEnd) {
-    //     console.log("First ",event);
-    //     this.username = this.loginservice.getName()
-    //     // this.currentRoute = (<NavigationEnd>event).url;
-    //     // console.log("Route ",this.currentRoute)
-    //   }
-    // });
-   
-    
-    // if (this.service.getName()) {
-    //   this.username = this.service.getName();
-    //   console.log("in fetch", this.service.getName())
-    // }
-    // console.log("value", this.username);
-
-    // this.route.params.subscribe(params => {
-    //   this.username = params['name'];
-    //   console.log(params['name']);
-      // if(this.username!==false){
-      //   this.router.navigateByUrl('/home');
-      // }
-    // });
   }
   checkuser(){
-    console.log("name ",this.username);
     if(typeof(this.username) === 'string')
     {
-      // this.logout=false
-      console.log("true"+this.username);
       return true
     }
     else{
-      console.log("False")
       return false
     }
   }

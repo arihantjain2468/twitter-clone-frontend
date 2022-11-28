@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { LoginService } from '../login.service';
@@ -38,9 +38,14 @@ export class TweetService {
   
 
   statusPost(body:object){
+    let token = sessionStorage.getItem('token');  
+    let header;
+    if(token!=null)
+     header = new HttpHeaders().set('Authorization',token);
+
     this.httpClient.post(this.tweetUrl,body,{ params: {
       email: this.email,
-    }}).subscribe((data) => {
+    },headers : header}).subscribe((data) => {
       console.log("post is successful",data);
     });
   }
@@ -50,10 +55,14 @@ export class TweetService {
   }
 
   fetchFeeds(){
+    let token = sessionStorage.getItem('token');  
+    let header;
+    if(token!=null)
+     header = new HttpHeaders().set('Authorization',token);
 
     return this.httpClient.get<Feeds[]>(this.feedsUrl,{ params: {
       email: this.email,
-      }})
+      },headers : header})
       .subscribe(data => {
         console.log("feeds"+data);
         let list = JSON.parse(JSON.stringify(data)).result;

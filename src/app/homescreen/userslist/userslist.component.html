@@ -1,5 +1,14 @@
-<div *ngFor="let user of users | async">
-    <div>{{user.email}}</div>
-    <div>{{user.name}}</div>
-    <button (click)="followUser(user.email)">follow</button>
+<div class="follow-list-container">
+    <h3>Who to follow</h3>
+    <div *ngFor="let user of users | async">
+        <div class="row users-row"> 
+            <div class="col-sm-7">
+            <div><strong>@{{user.name}}</strong></div>    
+            <div >{{user.email}}</div>
+            </div>
+            <div class="col-sm-5">
+            <button class="btn btn-dark follow-button" (click)="followUser(user.email)">follow</button>
+            </div>
+        </div>
+    </div>
 </div>

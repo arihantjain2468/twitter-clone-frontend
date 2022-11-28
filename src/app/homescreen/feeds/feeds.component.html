@@ -1,10 +1,23 @@
+<div class="status-body">
     <form class="form" style="margin-top: 20px;">
         <div class="form-group">
-            <input class="col-sm-7" name="status" [(ngModel)]="status" placeholder="What's happening?"/>
+            <textarea class="col-sm-7 form-control form-rounded status-textarea-field" name="status" [(ngModel)]="status" placeholder="What's happening?"></textarea>
         </div>
-        <button type="button" class="btn btn-warning" (click)="tweet()">tweet</button>
+        <button type="button" class="btn btn-dark tweet-button" (click)="tweet()">tweet</button>
     </form>
+</div>
+<div class="feeds-body">   
+    <div *ngIf="feedsLen>0;else nofeeds"> 
     <div *ngFor="let status of feeds | async">
-        <div>{{status.email}}</div>
-        <div>{{status.tweet}}</div>
+        <div class="feed-row">
+            <div><strong>{{status.email}}</strong></div>
+            <div>{{status.tweet}}</div>
+        </div>
     </div>
+    </div>
+    <ng-template #nofeeds>
+        <div class="feed-row">
+            No Feeds present.Follow more users to see feeds. 
+        </div>
+    </ng-template>
+</div>    

@@ -1,21 +1,13 @@
 <nav class="navbar navbar-dark bg-dark">
 
             <ul class="navbar-nav mr-auto">
-                <li class="navitem" style="margin-right: 20px;">
-                    <a class="nav-link" style="font-size: 25px;" routerLink="/home" routerLinkActive="home">
-                        Pizzeria
-                    </a>
+                <li class="navitem" >
+                        <strong>Twitter</strong>
                 </li>
-                <!-- <li><a class="navbar-brand mr-auto" routerLink="/home" >
-                        <img class="img-responsive" src="assets\PizzeriaLogo.png"
-                            style="height: 45px; width: 80px; margin-right: 5px;">
-                    </a></li> -->
             </ul>
             <ul class="navbar-nav ml-auto">     
-                <li class="navitem" style="margin-right: 25px;">
-                    <div >
-                        <button class="btn btn-warning" (click)="Logout()">Welcome, {{username}}</button> 
-                    </div>
+                <li>
+                    <button class="btn navitem" (click)="Logout()"><strong>{{username}}</strong></button> 
                 </li>
             </ul>
 

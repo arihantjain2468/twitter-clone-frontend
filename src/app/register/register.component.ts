@@ -25,9 +25,7 @@ export class RegisterComponent {
   ngOnInit(): void {
   }
   onClick = () => {   
-    console.log("Values ",this.RegisterForm.value); 
     this.Response = this.loginService.register(this.RegisterForm.value);
-    console.log("result", this.Response);
   }
 
 

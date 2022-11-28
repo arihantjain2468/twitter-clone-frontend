@@ -1,25 +1,26 @@
-    <div class="rounded loginin-body">
-        <h3 class="d-flex justify-content-center">Login Please!</h3>
-        <form class="form" [formGroup]="loginForm" (ngSubmit)="Login()" style="margin-top: 20px;">
+<div class="container-fluid signin-container d-flex align-items-center justify-content-center">
+<div class="loginin-body">
+        <h3 class="d-flex justify-content-center">Sign in to Twitter</h3>
+        <form class="form" [formGroup]="loginForm" style="margin-top: 20px;">
             <div class="form-group">
-                <label class="control-label col-sm-2">Email:</label>
-                <input class="col-sm-7" formControlName="email" placeholder="Enter Email"><br />
-                <div class="col-sm-7" *ngIf="loginForm.controls['email'].hasError('required')" style="color:red">
+                <input class="col-sm-7 form-control form-rounded" formControlName="email" placeholder="Enter Email">
+                <div class="col-sm-7 error-field" *ngIf="loginForm.controls['email'].hasError('required')" >
                     Email is required
                 </div>
             </div>
             <div class="form-group">
-                <label class="control-label col-sm-2">Password:</label><input type="password" class="col-sm-7" formControlName="password"
-                    placeholder="Enter Password"><br />
-                <div class="col-sm-7" *ngIf="loginForm.controls['password'].hasError('required')" style="color:red">
+                <input type="password" class="col-sm-7 form-control form-rounded" formControlName="password"
+                    placeholder="Enter Password">
+                <div class="col-sm-7 error-field" *ngIf="loginForm.controls['password'].hasError('required')" >
                     Password is required
                 </div>
             </div>
             <div align="center">
             <label class="control-label col-sm-10">New User? <a routerLink="/register">Register here </a></label>
             <div class="col-sm-10" >
-                <button type="button" class="btn btn-warning" (click)="onClick()">Login</button>
+                <button type="button" class="btn btn-dark login-button" (click)="onClick()">Login</button>
             </div>
             </div>
         </form>
-    </div>
+</div>
+</div>

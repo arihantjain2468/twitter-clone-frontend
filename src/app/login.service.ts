@@ -26,11 +26,8 @@ export class LoginService {
   login = (body:object):any =>{
 
     this.httpClient.post(this.loginUrl, body)
-      .subscribe((data) => {
-        console.log("post is successful", data)
+      .subscribe((data):any => {
         this.Data = data;
-        this.username=this.Data.data1.name;
-        this.email=this.Data.data1.email;
 
         sessionStorage.setItem("email",this.Data.data1.email);
         sessionStorage.setItem("token",this.Data.token);
@@ -38,26 +35,27 @@ export class LoginService {
 
         if (this.Data.result == 1) {
           this.router.navigateByUrl('/homescreen');
+          window.location.reload();
         }
-      }
-      )
+      }, error => {
+        return "error";
+      })
+
       return this.Data;
   }
   register(body:object) {
     this.httpClient.post(this.registerUrl, body)
       .subscribe((data) => {
-        console.log("post is successful",data);
         this.Register = data;
-        this.username=this.Register.data1.name;
-        this.email=this.Register.data1.email;
 
-        sessionStorage.setItem("email",this.Data.data1.email);
-        sessionStorage.setItem("token",this.Data.token);
-        sessionStorage.setItem("username",this.Data.data1.name);
+        sessionStorage.setItem("email",this.Register.data1.email);
+        sessionStorage.setItem("token",this.Register.token);
+        sessionStorage.setItem("username",this.Register.data1.name);
 
 
         if(this.Register.result == 1){
-          this.router.navigateByUrl('/homescreen');       
+          this.router.navigateByUrl('/homescreen');      
+          window.location.reload(); 
          }
       }
       );

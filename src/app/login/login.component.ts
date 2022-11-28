@@ -21,22 +21,8 @@ export class LoginComponent {
       })
     }
   
-    Login() {
-      console.log("Display details:" + JSON.stringify(this.loginForm.value));
-    }
-
     onClick = () => {    
-      this.Response = this.loginService.login(this.loginForm.value);
-      console.log("result", this.Response);
-  
-      // if (this.Response != null) {
-      //   console.log("result", this.Response);
-  
-      //   if (this.Response.result == 1) {
-      //     this.click=false;
-      //     this.router.navigate(['/nav']);
-      //   }
-      // }
+      this.Response = this.loginService.login(this.loginForm.value);  
     }
   
 }
